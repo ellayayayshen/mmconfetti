@@ -2,16 +2,21 @@
   "name": "mmconfetti",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next build",
     "lint": "next lint"
   },
   "dependencies": {
+    "alchemy-sdk": "^2.1.1",
+    "ethers": "^5.7.1",
     "next": "12.3.1",
+    "node-ethers": "^3.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "server": "^1.0.37",
     "socket.io": "^4.5.2",
     "web3": "^1.8.0"
   },

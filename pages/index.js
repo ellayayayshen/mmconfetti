@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { useState, useEffect } from "react";
 
 export default function Home() {
-
+  const [accounts, setAccounts] = useState(null);
+  
   async function connectWallet() {
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -13,7 +14,7 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.container}>
+    <div>
 
       <Image
         src="/mmheader.png"
@@ -21,15 +22,18 @@ export default function Home() {
         height={100}
       ></Image>
 
-      <button
-        onClick={connectWallet}
-        type="button"
-        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-emerald-700 bg-emerald-100 hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-        Connect Wallet
-      </button>
+<button
+    onClick={connectWallet}
+    type="button"
+    className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-emerald-700 bg-emerald-100 hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+  >
+    Connect Wallet
+  </button>
 
+{/* 
       <footer className={styles.footer}>
-      </footer>
+      </footer> */}
+      
     </div>
   )
 }

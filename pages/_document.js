@@ -1,54 +1,24 @@
-import { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
-    return (
-      <Html>
-    <head>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="web3.js"></script>
-    <script>
-        // connect to WebSocket server and start listening for notifications
-        let socket = io();
-        let el;
-        socket.on('notification', (notificationBody) => {
-        console.log("got notification");
-        el = document.getElementById('server-notification');
-        el.innerHTML = 'Look what just happened!: ' + notificationBody;
-        });
-    </script>
-    </head>
-
-<body>
-  <button class="enableEthereumButton">Enable Ethereum</button>
-  <h2>Account: <span class="showAccount"></span></h2>
-  <button class="enableNotificationsButton">Enable Notifications on this address</button>
-  <script>
-    const ethereumButton = document.querySelector('.enableEthereumButton');
-    const showAccount = document.querySelector('.showAccount');
-    const enableNotificationsButton = document.querySelector('.enableNotificationsButton');
-    // when clicked, send request to server to register the connected Ethereum address with Alchemy
-    enableNotificationsButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      console.log("send address");
-      if (showAccount.innerHTML) {
-        socket.emit('register address', showAccount.innerHTML);
-      }
-      alert(showAccount.innerHTML+" added to notifications.")
-    });
-    // when clicked, connect to a web3 Ethereum wallet and get the active account
-    ethereumButton.addEventListener('click', () => {
-      getAccount();
-    });
-    async function getAccount() {
-      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-      const account = accounts[0];
-      showAccount.innerHTML = account;
-    }
-  </script>
-  <p id="server-notification"></p>
-</body>
-
-      </Html>
-    )
-  }
+  return (
+    <Html>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        ></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        ></link>
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
